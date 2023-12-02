@@ -17,13 +17,34 @@ fn main() {
   let second = input
     .lines()
     .map(|line| {
-      let mut line_str = line.clone().to_string();
-      numbers.iter().enumerate().for_each(|(i, number)| {
-        line_str = line_str.replace(number, format!("{}{}{}", number, i+1, number).as_str());
-      });
-      let num_string = line_str.as_bytes();
-      let first = num_string[line_str.find(char::is_numeric).unwrap()] - b'0';
-      let last = num_string[line_str.rfind(char::is_numeric).unwrap()] - b'0';
+      let num_string = line.as_bytes();
+      
+      let mut first_idx = match line.find(char::is_numeric) {
+        Some(idx) => idx,
+        None => line.len()
+      };
+      let mut last_idx = match line.rfind(char::is_numeric) {
+        Some(idx) => idx,
+        None => 0
+      };
+      
+      let mut first = num_string[first_idx] - b'0';
+      let mut last = num_string[last_idx] - b'0';
+
+      for (i, number) in numbers.iter().enumerate() {
+        match line.find(number) {
+          Some(idx) => {
+            if idx < first_idx {
+              first_idx = idx;
+              first = (i+1) as u8;
+            } else if idx > last_idx {
+              last_idx = idx;
+              last = (i+1) as u8;
+            }
+          },
+          None => ()
+        }
+      }
       (first*10+last) as u16
     })
     .sum::<u16>();
