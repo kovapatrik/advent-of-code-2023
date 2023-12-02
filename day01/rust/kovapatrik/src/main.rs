@@ -30,14 +30,22 @@ fn main() {
       
       let mut first = num_string[first_idx] - b'0';
       let mut last = num_string[last_idx] - b'0';
-
+      
       for (i, number) in numbers.iter().enumerate() {
+
         match line.find(number) {
           Some(idx) => {
             if idx < first_idx {
               first_idx = idx;
               first = (i+1) as u8;
-            } else if idx > last_idx {
+            }
+          },
+          None => ()
+        }
+
+        match line.rfind(number) {
+          Some(idx) => {
+            if idx > last_idx {
               last_idx = idx;
               last = (i+1) as u8;
             }
