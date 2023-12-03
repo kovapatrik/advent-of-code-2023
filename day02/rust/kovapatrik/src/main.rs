@@ -1,5 +1,3 @@
-use std::collections::HashMap;
-
 struct Game {
   id: u16,
   rounds: Vec<Round>,
