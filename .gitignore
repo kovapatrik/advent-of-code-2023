@@ -1,5 +1,8 @@
 .env
 input.txt
+input
+test.txt
+test
 
 .vscode
 advent_of_code_env/
