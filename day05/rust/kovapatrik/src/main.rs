@@ -59,8 +59,9 @@ fn part1(seeds: &Vec<usize>, seed_map: &SeedMap) -> usize {
         let map = seed_map.get(name).unwrap();
         value = match map.source_range
           .iter()
-          .position(|range| range.contains(&value)) {
-          Some(index) => map.destination_range[index].start + value - map.source_range[index].start,
+          .zip(map.destination_range.iter())
+          .find(|(source_range, _)| source_range.contains(&value)) {
+          Some((source_range, dest_range)) => dest_range.start + value - source_range.start,
           None => value
           };
         name = &map.to;
