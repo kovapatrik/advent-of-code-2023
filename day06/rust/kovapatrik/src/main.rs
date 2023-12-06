@@ -31,11 +31,6 @@ fn get_races(input: &String, part: usize) -> Vec<Race> {
 fn solve_race(r: &Race) -> usize {
   let disc = (r.time.pow(2) - 4 * r.distance) as f32;
 
-  let t1= ((r.time as f32) - disc.sqrt()) / 2.0;
-  let t2 = ((r.time as f32) + disc.sqrt()) / 2.0;
-
-  println!("{} {} {} {}", r.time, r.distance, t1, t2);
-
   let q1 = ((((r.time as f64) - (disc.sqrt() as f64)) / 2.0).floor() as usize) + 1;
   let q2 = (((r.time as f64) + (disc.sqrt() as f64)) / 2.0).ceil() as usize;
 
