@@ -36,8 +36,8 @@ fn solve_race(r: &Race) -> usize {
 
   println!("{} {} {} {}", r.time, r.distance, t1, t2);
 
-  let q1 = ((((r.time as f32) - disc.sqrt()) / 2.0).floor() as usize) + 1;
-  let q2 = (((r.time as f32) + disc.sqrt()) / 2.0).ceil() as usize;
+  let q1 = ((((r.time as f64) - (disc.sqrt() as f64)) / 2.0).floor() as usize) + 1;
+  let q2 = (((r.time as f64) + (disc.sqrt() as f64)) / 2.0).ceil() as usize;
 
   q2 - q1
 }
