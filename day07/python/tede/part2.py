@@ -61,30 +61,30 @@ with open(inf) as f:
 
         hand_translated = line.split(' ')[0].strip().translate(trans_table)
         value = int(line.split(' ')[1].strip())
-        print(hand_translated.translate(reverse_trans_table))
+        #print(hand_translated.translate(reverse_trans_table))
         if 'J' in line:
             
             type, opt_sub = optimize_joker_hand(hand_translated)
             optimal_hand = hand_translated.replace('1', str(opt_sub))
-            print(f'after optimization: {optimal_hand.translate(reverse_trans_table)}')
+            #print(f'after optimization: {optimal_hand.translate(reverse_trans_table)}')
 
         else:
 
             type = get_type(hand_translated)
 
         hands.append(str(type) + hand_translated)
-        print(f'hand with type: {hands[-1]}')
+        #print(f'hand with type: {hands[-1]}')
         values.append(value)
 
 sorted_hands, sorted_values = zip(*sorted(zip(hands, values), key=lambda x: int(x[0], 16)))
 
-print(sorted_hands)
-print(sorted_values)
+#print(sorted_hands)
+#print(sorted_values)
 
 sum = 0
 
 for index, Ivalue in enumerate(sorted_values):
     sum += Ivalue * (index + 1)
-    print(index + 1, Ivalue, Ivalue * (index + 1))
+    #print(index + 1, Ivalue, Ivalue * (index + 1))
 
 print(sum)
