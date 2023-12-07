@@ -69,8 +69,8 @@ def find_starting_value_range(destination_starts, source_starts, ranges, target_
     return result_starts, result_ranges
 
 
-#inf = sys.argv[1] if len(sys.argv) > 1 else "input.txt"
-inf = sys.argv[1] if len(sys.argv) > 1 else r"D:\Private_projects\Python\advent-of-code-2023\day05\python\tede\input.txt"
+inf = sys.argv[1] if len(sys.argv) > 1 else "input_test.txt"
+#inf = sys.argv[1] if len(sys.argv) > 1 else r"D:\Private_projects\Python\advent-of-code-2023\day05\python\tede\input.txt"
 
 lines = [line for line in open(inf).read().split("\n\n")]
 
@@ -101,5 +101,7 @@ for index, Imap in enumerate(lines[1:]):
     target_range = new_range
 
 closest = np.min(target_start)
+print(target_start)
+print(target_range)
 print(f"Closest: {closest}")
 
