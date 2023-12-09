@@ -1,27 +1,23 @@
 use std::collections::VecDeque;
 
-struct Sequence {
-  values: Vec<i32>,
-}
-
-fn get_sequences(input: &String) -> Vec<Sequence> {
+fn get_sequences(input: &String) -> Vec<Vec<i32>> {
   input
     .lines()
-    .map(|line| Sequence {
-      values: line
+    .map(|line| {
+      line
         .split(' ')
         .map(|value| value.parse::<i32>().unwrap())
-        .collect(),
+        .collect()
     })
     .collect()
 }
 
-fn part1(sequences: &Vec<Sequence>) -> i32 {
+fn part1(sequences: &Vec<Vec<i32>>) -> i32 {
  
   sequences
     .iter()
     .map(|seq| {
-      let mut vec = seq.values.clone();
+      let mut vec = seq.clone();
       let mut last_elems = Vec::new();
       while !vec.iter().all(|v| *v == 0) {
         let elem = vec.iter().last().unwrap().clone();
@@ -33,12 +29,12 @@ fn part1(sequences: &Vec<Sequence>) -> i32 {
     .sum()
 }
 
-fn part2(sequences: &Vec<Sequence>) -> i32 {
+fn part2(sequences: &Vec<Vec<i32>>) -> i32 {
   
   sequences
     .iter()
     .map(|seq| {
-      let mut vec = seq.values.clone();
+      let mut vec = seq.clone();
       let mut first_elems = VecDeque::new();
       while !vec.iter().all(|v| *v == 0) {
         let elem = vec[0];
