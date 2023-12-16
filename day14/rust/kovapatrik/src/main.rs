@@ -168,10 +168,10 @@ impl Platform {
       // There is a cycle
       if let Some(elem) = cache.get(&Cache::new(0, self.to_owned())) {
         let cycle_length = i + 1 - elem.step;
-        let steps_remaining = 1_000_000_000 - 1 - i;
-        let steps_to_skip = steps_remaining % cycle_length;
+        let remaining = 1_000_000_000 - 1 - i;
+        let steps_remaining = remaining % cycle_length;
 
-        for _ in 0..steps_to_skip {
+        for _ in 0..steps_remaining {
           self.tilt_all();
         }
 
